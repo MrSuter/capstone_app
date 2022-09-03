@@ -6,6 +6,8 @@ import pandas as pd
 import numpy as np
 admindata = pd.read_csv('admission_data.csv')
 
+print('Hello Streamlit')
+
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(admindata[['GRE Score','TOEFL Score','University Rating','SOP','LOR','CGPA','Research']], admindata.Admit, test_size=0.2, random_state=0)
 
