@@ -4,7 +4,7 @@ import streamlit as st
 
 
 #creating a function for prediction
-def admitpredict(input_data):
+def admitpredict(input_data, model):
 
     input_data_array = np.asarray(input_data)
 

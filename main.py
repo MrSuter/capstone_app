@@ -27,14 +27,6 @@ def main():
     GPARating = st.text_input('Undergraduate GPA (10 point scale)')
     Research = st.text_input('Research experience? 1 = yes, 0 = no')
     
-    
-
-
-    
-    
-    
-
-    
     #Code for prediction
     acceptance = ''
 
@@ -47,7 +39,7 @@ def main():
         LORRating = float(LORRating)
         GPARating = float(GPARating)
         Research = float(Research)
-        acceptance = admitpredict([GREScore, TOEFLScore, UniversityRating, SOPRating, LORRating, GPARating, Research])
+        acceptance = admitpredict([GREScore, TOEFLScore, UniversityRating, SOPRating, LORRating, GPARating, Research], model)
 
     st.success(acceptance)
 
