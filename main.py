@@ -18,12 +18,27 @@ def main():
     LORRating = st.text_input('Letter of Recommendation strength rating (1 - 5 scale')
     GPARating = st.text_input('Undergraduate GPA (10 point scale)')
     Research = st.text_input('Research experience? 1 = yes, 0 = no')
+    
+    
 
+
+    
+    
+    
+
+    
     #Code for prediction
     acceptance = ''
 
     #Create prediction button
     if st.button('Acceptance Prediction'):
+        GREScore = float(GREScore)
+        TOEFLScore = float(TOEFLScore)
+        UniversityRating = float(UniversityRating)
+        SOPRating = float(SOPRating)
+        LORRating = float(LORRating)
+        GPARating = float(GPARating)
+        Research = float(Research)
         acceptance = admitpredict([GREScore, TOEFLScore, UniversityRating, SOPRating, LORRating, GPARating, Research])
 
     st.success(acceptance)
