@@ -1,37 +1,37 @@
 
 import pickle
 import sklearn
-
-import pandas as pd
 import numpy as np
-admindata = pd.read_csv('admission_data.csv')
+import streamlit as st
+from webapp import admitpredict
 
-from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(admindata[['GRE Score','TOEFL Score','University Rating','SOP','LOR','CGPA','Research']], admindata.Admit, test_size=0.2, random_state=0)
+def main():
+    #title
+    st.title('Graduate School Prediction Web App')
 
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-X_train = sc.fit_transform(x_train)
-X_test = sc.transform(x_test)
+    #Get input from user
+    #GRE Score,TOEFL Score,University Rating,SOP,LOR,CGPA,Research
+    GREScore = st.text_input('GRE test score (out of 340)')
+    TOEFLScore = st.text_input('TOEFL test score (Out of 190)')
+    UniversityRating = st.text_input('University Rating (1 - 5 scale)')
+    SOPRating = st.text_input('Statement of Purpose strength rating (1 - 5 scale)')
+    LORRating = st.text_input('Letter of Recommendation strength rating (1 - 5 scale')
+    GPARating = st.text_input('Undergraduate GPA (10 point scale)')
+    Research = st.text_input('Research experience? 1 = yes, 0 = no')
 
-from sklearn.naive_bayes import GaussianNB
-model = GaussianNB()
-model.fit(X_train, y_train)
+    #Code for prediction
+    acceptance = ''
 
-from sklearn import svm
-clf = svm.SVC()
-clf.fit(X_train, y_train)
+    #Create prediction button
+    if st.button('Acceptance Prediction'):
+        acceptance = admitpredict([GREScore, TOEFLScore, UniversityRating, SOPRating, LORRating, GPARating, Research])
 
-Xnew = [[350,190,3,3,3.5,8,1]]
-ynew = model.predict(Xnew)
-print("X=%s, Predicted=%s" % (Xnew[0], ynew[0]))
+    st.success(acceptance)
 
-#filename = 'finalized_model.sav'
-#model = pickle.load(open(filename, 'rb'))
+if __name__ == '__main__':
+    main()
 
-#Xnew = [[50,100,3,3,3.5,8,1]]
-#ynew = model.predict(Xnew)
-#print("X=%s, Predicted=%s" % (Xnew[0], ynew[0]))
+
 
 
 
