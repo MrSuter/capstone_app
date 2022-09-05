@@ -4,10 +4,18 @@ import sklearn
 import numpy as np
 import streamlit as st
 from webapp import admitpredict
+from PIL import Image
+
 
 def main():
     #title
     st.title('Graduate School Prediction Web App')
+
+    model = pickle.load(open('finalized_model.sav', 'rb'))
+
+    #adding an image to the page
+    img = Image.open("output.png")
+    st.image(img)
 
     #Get input from user
     #GRE Score,TOEFL Score,University Rating,SOP,LOR,CGPA,Research

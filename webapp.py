@@ -1,13 +1,7 @@
 import numpy as np
 import pickle
 import streamlit as st
-from PIL import Image
 
-model = pickle.load(open('finalized_model.sav', 'rb'))
-
-#adding an image to the page
-img = Image.open("output.png")
-st.image(img)
 
 #creating a function for prediction
 def admitpredict(input_data):
